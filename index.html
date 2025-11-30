@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная • Учебный тест</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="mask-icon.svg" color="#2563EB">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <script>
+    (function(){
+      function drawCheck(ctx, size){
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0,0,size,size);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = '#2563EB';
+        ctx.lineWidth = size * 0.12;
+        const s = size;
+        ctx.beginPath();
+        ctx.moveTo(s*0.25, s*0.55);
+        ctx.lineTo(s*0.45, s*0.75);
+        ctx.lineTo(s*0.78, s*0.32);
+        ctx.stroke();
+      }
+      function makePng(size){
+        const c = document.createElement('canvas');
+        c.width = c.height = size;
+        const ctx = c.getContext('2d');
+        drawCheck(ctx, size);
+        return c.toDataURL('image/png');
+      }
+      function ensureLink(rel, sizes, href, type){
+        const link = document.createElement('link');
+        link.rel = rel;
+        if (sizes) link.sizes = sizes;
+        if (type) link.type = type;
+        link.href = href;
+        document.head.appendChild(link);
+      }
+      try {
+        ensureLink('apple-touch-icon', '180x180', makePng(180));
+        ensureLink('icon', '192x192', makePng(192), 'image/png');
+        ensureLink('icon', '512x512', makePng(512), 'image/png');
+      } catch(e) { }
+    })();
+  </script>
+  <style>
+    .home { max-width: 720px; margin: 12vh auto 0; border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+    .home h1 { margin-top: 0; }
+    .home .desc { color: var(--muted); margin: 8px 0 18px; }
+  </style>
+  <script>
+    function openStartModal() {
+      const m = document.getElementById('start-modal');
+      m.setAttribute('aria-hidden','false');
+      m.setAttribute('aria-modal','true');
+    }
+    function closeStartModal() {
+      const m = document.getElementById('start-modal');
+      m.setAttribute('aria-hidden','true');
+      m.setAttribute('aria-modal','false');
+    }
+    function confirmStart() {
+      window.location.href = 'test.html';
+    }
+  </script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="home">
+        <h1>Учебный тест: Создание веб‑сайтов</h1>
+        <p class="desc">15 вопросов • ограничение 15 минут</p>
+        <button class="btn btn--primary" onclick="openStartModal()">Начать тест</button>
+      </div>
+    </div>
+    <!-- Стартовое подтверждение -->
+    <div id="start-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false">
+      <div class="modal__backdrop" onclick="closeStartModal()"></div>
+      <div class="modal__dialog" role="document">
+        <div class="modal__header">
+          <h3>Начать тест</h3>
+          <button class="icon-btn" aria-label="Закрыть" onclick="closeStartModal()">×</button>
+        </div>
+        <div class="modal__body">
+          <p>Тест содержит 15 вопросов и ограничение по времени 25 минут. Готовы начать?</p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" onclick="closeStartModal()">Отмена</button>
+          <button class="btn btn--primary" onclick="confirmStart()">Начать</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

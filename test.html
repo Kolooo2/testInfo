@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тест: Создание веб‑сайтов</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="mask-icon.svg" color="#2563EB">
+  <meta name="theme-color" content="#ffffff">
+  <script defer src="quiz.js"></script>
+  <meta name="color-scheme" content="light">
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <h1 class="app__title">Тест: Создание веб‑сайтов</h1>
+      <div class="app__meta">
+        <div class="score">
+          <span>Выполнено: <strong id="score-done">0</strong>/15</span>
+        </div>
+        <div class="timer">
+          <div class="timer__top">
+            <span>Осталось времени:</span>
+            <strong id="timer-text">15:00</strong>
+          </div>
+          <div class="bar bar--time">
+            <div id="timer-bar" class="bar__fill" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bar bar--progress" aria-label="Прогресс">
+        <div id="progress-bar" class="bar__fill" style="width: 0%"></div>
+      </div>
+    </header>
+
+    <main class="quiz" id="quiz">
+      <div class="quiz__head">
+        <div class="quiz__index">Вопрос <span id="q-index">1</span> из 15</div>
+        <h2 id="q-text" class="quiz__question">…</h2>
+      </div>
+
+      <form id="answers" class="answers" autocomplete="off">
+      </form>
+
+      <div class="quiz__controls">
+        <button id="btn-prev" class="btn btn--ghost" type="button">Назад</button>
+        <button id="btn-next" class="btn" type="button">Далее</button>
+        <button id="btn-submit" class="btn btn--primary" type="button">Сдать тест</button>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Модальное окно результата -->
+  <div id="result-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false">
+    <div class="modal__backdrop" id="result-close-backdrop"></div>
+    <div class="modal__dialog" role="document">
+      <div class="modal__header">
+        <h3>Результаты теста</h3>
+        <button id="result-close" class="icon-btn" aria-label="Закрыть">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="result__summary">
+          <div><strong>Всего вопросов:</strong> <span id="res-total">15</span></div>
+          <div><strong>Правильных:</strong> <span id="res-correct">0</span></div>
+          <div><strong>Неправильных:</strong> <span id="res-incorrect">0</span></div>
+          <div><strong>Процент:</strong> <span id="res-percent">0%</span></div>
+          <div><strong>Затраченное время:</strong> <span id="res-time">—</span></div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button id="result-ok" class="btn btn--primary" type="button">Ок</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно подтверждения сдачи -->
+  <div id="submit-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false">
+    <div class="modal__backdrop" id="submit-backdrop"></div>
+    <div class="modal__dialog" role="document">
+      <div class="modal__header">
+        <h3>Сдать тест?</h3>
+        <button id="submit-cancel-x" class="icon-btn" aria-label="Закрыть">×</button>
+      </div>
+      <div class="modal__body">
+        <p>После сдачи изменить ответы нельзя. Подтвердить сдачу сейчас?</p>
+      </div>
+      <div class="modal__footer">
+        <button id="submit-cancel" class="btn btn--ghost" type="button">Отмена</button>
+        <button id="submit-confirm" class="btn btn--primary" type="button">Сдать</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
